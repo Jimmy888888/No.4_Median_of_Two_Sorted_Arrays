@@ -1,10 +1,26 @@
-// program below illustrates the 
-// vector::insert() function 
 #include <iostream> 
 #include <vector>
 #include <iterator>
 using namespace std; 
-  
+
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+    nums1.insert(nums1.end(), nums2.begin(), nums2.end());
+    
+    sort(nums1.begin(), nums1.end());
+    int n = nums1.size();        
+    double ans;
+    if(n%2 != 0)
+        ans = nums1[n/2]; 
+    else{
+        double sum = nums1[n/2] + nums1[n/2 -1];
+        ans = sum/2;
+    }
+    return ans;
+    }
+};
+
 int main() 
 { 
     // initialising the vector 
