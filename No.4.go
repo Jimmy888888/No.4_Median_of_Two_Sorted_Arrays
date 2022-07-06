@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 //pseudo code
 /*
@@ -14,24 +17,26 @@ target even : half - 1, half
 target is the end point
 */
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
-	n1Len := len(nums1)
-	n2Len := len(nums2)
-	half := (n1Len + n2Len) / 2
+	all := []int{}
+	all = append(nums1, nums2...)
+	sort.Ints(all)
 
-	n1left := n1Len/2 - 1
-	n1right := n1Len / 2
-	n2left := n2Len/2 - 1
-	n2right := n2Len / 2
-	fmt.Print(half)
+	var mid1 int = 0
+	var mid2 int = 0
 
-	for 
-	// if n1Len%2 == 0 {
-	// 	n1Middle := n1Len / 2
-	// }
-	// if n2Len%2 == 0 {
-	// 	n2Middle := n2Len / 2
-	// }
-	return 0
+	if len(all)%2 == 0 {
+		mid1 = len(all) / 2
+		mid2 = mid1 - 1
+	}
+	if len(all)%2 == 1 {
+		mid1 = len(all) / 2
+		mid2 = mid1
+	}
+	mid1_num := float64(all[mid1])
+	mid2_num := float64(all[mid2])
+	var ans float64 = (mid1_num + mid2_num) / 2
+
+	return ans
 }
 
 func main() {
